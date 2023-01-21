@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3 | POST API Request</title>
+    <link rel="stylesheet" href="/css/exercise-3.css" />
+  </head>
+
+  <body>
+    <h2>Exercise 3: POST API Request</h2>
+    <p>API endpoint: /payment/api/transaction/create</p>
+    <form id="form">
+      <div class="form-input">
+        <label for="Amount">Amount:</label>
+        <input
+          type="input"
+          name="Amount"
+          id="Amount"
+          required
+          placeholder="ex: 9.99"
+          pattern="^[0-9]\d{0,9}(\.\d{1,2})?%?$"
+          title="ex: 9.99"
+        />
+      </div>
+      <div class="form-input">
+        <label for="Currency">Currency:</label>
+        <select name="Currency" id="Currency">
+          <option selected value="USD">USD</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <label for="SetupId">Setup ID:</label>
+        <select selected name="SetupId" id="SetupId">
+          <option value="EVO US_CC">EVO US_CC</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <label for="Type">Type:</label>
+        <select name="Type" id="Type">
+          <option value="Sale">Sale</option>
+        </select>
+      </div>
+      <button type="submit">Create Transaction</button>
+    </form>
+
+    <p class="transaction-key"></p>
+
+    <script>
+      const form = document.getElementById("form");
+      const transactionKeyEl = document.querySelector(".transaction-key");
+
+      const fetchTransactionKey = async (payload) => {
+        const response = await fetch("/transaction", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        const transactionKey = await response.json();
+        console.log(transactionKey);
+        return transactionKey;
+      };
+
+      const getFormValue = (id) => {
+        return document.getElementById(id).value;
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const payload = {
+          Amount: getFormValue("Amount"),
+          Currency: getFormValue("Currency"),
+          SetupId: getFormValue("SetupId"),
+          Type: getFormValue("Type"),
+        };
+
+        const { Key } = await fetchTransactionKey(payload);
+        // display key to UI
+        transactionKeyEl.innerText = `Transaction Key: ${Key}`;
+      });
+    </script>
+  </body>
+</html>
