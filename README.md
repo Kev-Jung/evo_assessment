@@ -3,11 +3,11 @@
 My solution for this technical assessment is demonstrated through the use of a Node/Express web server which is responsible for handling client requests and getting and posting data to the PayFabric API.
 
 ## All Exercises
-[Exercise 2](https://github.com/Kev-Jung/evo_assessment/new/main?readme=1#exercise-2)<br />
-[Exercise 3](https://github.com/Kev-Jung/evo_assessment/new/main?readme=1#exercise-3)<br />
-[Exercise 4](https://github.com/Kev-Jung/evo_assessment/new/main?readme=1#exercise-4)<br />
-[Exercise 5](https://github.com/Kev-Jung/evo_assessment/new/main?readme=1#exercise-5)<br />
-[Exercise 6](https://github.com/Kev-Jung/evo_assessment/new/main?readme=1#exercise-6)<br />
+[Exercise 2](https://github.com/Kev-Jung/evo_assessment#exercise-2)<br />
+[Exercise 3](https://github.com/Kev-Jung/evo_assessment#exercise-3)<br />
+[Exercise 4](https://github.com/Kev-Jung/evo_assessment#exercise-4)<br />
+[Exercise 5](https://github.com/Kev-Jung/evo_assessment#exercise-5)<br />
+[Exercise 6](https://github.com/Kev-Jung/evo_assessment#exercise-6)<br />
 
 <br/>
 
@@ -54,7 +54,7 @@ app.get("/token", async (req, res) => {
   return res.status(200).json(token);
 });
 ```
-### Answer
+### Answer:
 
 ```{ Token: "2:4uiyc8ch0hom" } ```
 
@@ -115,7 +115,7 @@ const createTransaction = async (payload) => {
 ```
 - Display the Transaction Key to UI
 
-### Answer
+### Answer:
 
 ```{ Key: "23011902451849" }```
 
