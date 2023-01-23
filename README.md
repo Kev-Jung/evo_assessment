@@ -27,6 +27,7 @@ Follow the instructions on [Security Token](https://github.com/PayFabric/Hosted-
 ```javascript
 const generateToken = async () => {
   const TOKEN_ENDPOINT = "/token/create";
+
   const options = {
     method: "GET",
     headers: {
@@ -34,12 +35,13 @@ const generateToken = async () => {
       "Authorization": `${process.env.DEVICE_ID}|${process.env.DEVICE_PASSWORD}`,
     },
   };
+
   try {
-    const response = await fetch(SANDBOX_URL + TOKEN_ENDPOINT, options);
+    const response = await fetch(SANDBOX_ROOT_URL + TOKEN_ENDPOINT, options);
     // returns response data => {Token: "2:4uiyc8ch0hom"}
     return await response.json();
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
   }
 };
 ```
